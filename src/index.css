@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.video-container {
+    width: 100vw; /* Adjust the width as needed */
+    height: 80vh; /* Adjust the height as needed */
+    max-width: 100%; /* Ensures responsiveness */
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+}
