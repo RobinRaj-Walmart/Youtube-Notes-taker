@@ -4,20 +4,8 @@ import axios from 'axios';
 
 
 export default function VideoPlayer({ playerRef, timeStamp, apiKey, videoId, setVideoId }) {
-    // const playerRef = useRef(null);
-    const [currentTime, setCurrentTime] = useState(timeStamp);
     const [videoTitle, setVideoTitle] = useState('');
     const [videoDescription, setVideoDescription] = useState('');
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (playerRef.current) {
-                setCurrentTime(playerRef.current.getCurrentTime().toFixed(0));
-            }
-        }, 1000); // Update current time every second
-
-        return () => clearInterval(interval); // Cleanup interval on component unmount
-    }, []);
 
     useEffect(() => {
         const fetchVideoInfo = async () => {
@@ -67,10 +55,6 @@ export default function VideoPlayer({ playerRef, timeStamp, apiKey, videoId, set
                 <p className=' ml-2 font-thin'>{videoDescription}</p>
             </div>
             <hr className='mt-5' />
-            {/* <button className='border bg-gray-200 rounded-lg shadow m-2 p-2' onClick={() => seekTo(timeStamp)}>
-                Seek to timestamp
-            </button>
-            <div className="text-center mt-4">Current Time in seconds: {currentTime}</div> */}
         </div>
     );
 }

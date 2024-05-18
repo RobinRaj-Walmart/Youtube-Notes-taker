@@ -10,10 +10,20 @@ function App() {
   const [noteflag, setNoteflag] = useState(false);
   const [notes, setNotes] =useState(new Map());
   const playerRef = useRef(null);
-  // const [currentTime, setCurrentTime] = useState(timeStamp);
+  const [currentTime, setCurrentTime] = useState(timeStamp);
 
   const heading = "Video Player with Notes";
   const apiKey = "AIzaSyDawCvQJyvXcniuoDljLu1IgaS4eLZk9-4";
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+        if (playerRef.current) {
+            setCurrentTime(playerRef.current.getCurrentTime().toFixed(0));
+        }
+    }, 1000);
+
+    return () => clearInterval(interval);
+}, []);
 
   useEffect(() => {
     const storedNotes = JSON.parse(localStorage.getItem('notes'));
@@ -37,7 +47,7 @@ function App() {
         <VideoPlayer playerRef={playerRef} timeStamp={timeStamp} apiKey={apiKey} videoId={currentVideoId} setVideoId={setCurrentVideoId} />
         <div className='flex'>
           <div className='flex-auto'><NotesSection playerRef={playerRef} setTimeStamp={setTimeStamp} setNoteflag={setNoteflag} notes={notes} setNotes={setNotes} videoId={currentVideoId} /></div>
-          {noteflag && <div className='flex-auto ml-2'><AddNotes setNoteflag={setNoteflag} setNotes={setNotes} videoId={currentVideoId} /></div>}
+          {noteflag && <div className='flex-auto ml-2'><AddNotes setNoteflag={setNoteflag} setNotes={setNotes} videoId={currentVideoId} currentTime={currentTime} /></div>}
         </div>
         
       </div>

@@ -54,8 +54,6 @@ export default function NotesSection({ playerRef, setTimeStamp, setNoteflag, not
 
     return (
         <div>
-            {/* <input className="border rounded m-2 p-1" type="text" value={time} onChange={(e)=>setTime(e.target.value)} />
-            <button className="border rounded bg-slate-200 p-1 m-2" onClick={()=>setTimeStamp(time)} >Update the Time Stamp</button> */}
             <div className="ml-4 p-4 border rounded-xl">
                 <div className="flex justify-between">
                     <div>
