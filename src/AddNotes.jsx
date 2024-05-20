@@ -32,6 +32,7 @@ export default function AddNotes({setNoteflag, setNotes, videoId, currentTime}) 
     }
 
     function noteToCurrentTime() {
+        setTs(currentTime);
         document.getElementById('time').value = currentTime;
     }
 
